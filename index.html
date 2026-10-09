@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f6f4"><meta name="description" content="计算机网络协议的逐帧、逐层交互式教学可视化；含 DHCP、ARP、NAT、TCP、HTTP 等。"><title>Packet Atlas · 408 网络协议地图</title><link rel="stylesheet" href="./src/styles.css"></head>
+<body><div class="app">
+ <aside class="sidebar" aria-label="场景导航">
+  <div class="brand"><div class="brand-sign">P<span>.</span></div><div><strong>PACKET ATLAS</strong><small>408 / NETWORK LAB</small></div></div>
+  <div class="nav-overline">LEARNING PATH <span id="stat"></span></div>
+  <label class="sr-only" for="search">搜索协议场景</label><input type="search" class="search" id="search" placeholder="搜索协议或章节…">
+  <nav id="nav" class="scenario-nav"></nav>
+  <div class="sidebar-footer"><span class="status-dot"></span> 离线静态网页 · 王道原始无笔记底图<div>动态路径按教学场景叠加</div></div>
+ </aside>
+ <main class="workspace">
+  <header class="topbar"><div class="breadcrumb"><span>408 计算机网络</span><span class="crumb-slash">/</span><span id="category">网络层</span><span class="crumb-slash">/</span><span>协议实验</span></div><div class="top-links"><span class="local-note">可部署 GitHub Pages</span><span class="version">BETA 0.2</span></div></header>
+  <section class="intro"><div class="intro-eyebrow"><span class="eyebrow-line"></span> INTERACTIVE NETWORK NOTEBOOK</div><h1 id="title"></h1><p id="subtitle"></p><div class="meta"><span id="source"></span><span class="meta-separator">/</span><span>逐帧推演</span><span class="meta-separator">/</span><span>逐层封装</span></div></section>
+  <section class="controlbar" aria-label="动画控制">
+   <div class="play-controls"><button id="btnPrev" class="control-square" title="上一步 ←" aria-label="上一步">←</button><button id="btnPlay" class="play-button">▶ <span>播放推演</span></button><button id="btnNext" class="control-square" title="下一步 →" aria-label="下一步">→</button><button id="reset" class="control-text">↺ 重置</button></div>
+   <div class="control-extras"><label for="speed">速度</label><select id="speed" class="small-select"><option value="0.7">0.7 ×</option><option value="1" selected>1.0 ×</option><option value="1.5">1.5 ×</option><option value="2">2.0 ×</option></select><button id="share" class="control-text" title="复制当前场景链接">↗ 分享步骤</button></div>
+  </section>
+  <section class="topology-section"><div class="section-heading"><div><div class="overline">01 / NETWORK TOPOLOGY</div><h2>网络拓扑与报文路径</h2></div><div class="section-actions"><button id="originalMode" class="tab selected" aria-pressed="true">王道骚图 · 无笔记</button><button id="paperMode" class="tab" aria-pressed="false">导入我的笔记</button></div></div>
+   <div id="paperControls" class="paper-controls hidden"><label for="paperUpload">替换为我自己的完整手稿（仅本地读取）</label><input id="paperUpload" type="file" accept="image/*"><span>原图比例 2418×1710；按原图位置叠加动画</span></div>
+   <div class="stage-wrap"><svg id="board" viewBox="0 0 1448 1024" role="img" aria-label="交互式网络拓扑与当前报文路径"></svg><div class="stage-top"><span class="stage-live">● LIVE SIMULATION</span><span id="stageCounter">01 / 07</span></div><div class="stage-bottom"><div class="legend"><span><b class="lg blue"></b>发送路径</span><span><b class="lg gold"></b>广播</span><span><b class="lg rose"></b>响应</span></div><div class="stage-tools"><button id="zminus" aria-label="缩小" title="缩小">−</button><button id="zreset" aria-label="重置视图" title="恢复默认缩放">⌖</button><button id="zplus" aria-label="放大" title="放大">+</button></div></div></div>
+   <div class="stage-footer"><span>提示：拓扑和路径用于教学模拟，不代表真实抓包</span><label><input type="checkbox" id="follow" checked> 跟随当前报文</label></div>
+  </section>
+  <section class="timeline-section"><div class="section-heading compact"><div><div class="overline">02 / STEP BY STEP</div><h2 id="stepTitle"></h2></div><span class="step-count" id="stepCount"></span></div><div class="timeline-track" id="timeline" aria-label="步骤时间轴"></div><div class="explain-card"><div class="explain-label">WHAT HAPPENS</div><p id="description"></p><div class="explain-why" id="why"></div></div></section>
+  <footer class="main-footer">使用 ← → 逐步推演 · 空格播放/暂停 · 浏览器可保存链接并定位具体步骤</footer>
+ </main>
+ <aside class="inspector" aria-label="报文结构与字段分析"><div id="packetPanel"><div class="inspector-heading"><span class="overline">PACKET DISSECTION</span><span class="analyze-pill">INTERACTIVE</span></div><h2>报文解剖视图</h2>
+ <div class="diagram-head"><span>ENCAPSULATION</span><span id="pktStep">STEP 01</span></div><div id="packetDiagram" class="packet-diagram" aria-live="polite"></div>
+ <div class="layer-detail" id="layerDetail"><div class="detail-label">FIELD DETAIL</div><div id="layerContent" class="detail-content">点击任意协议层查看字段解释</div></div>
+ <div class="inspector-divider"></div></div><div class="inspector-heading small"><span class="overline">STEP EVIDENCE</span><span>依据原步骤</span></div><div id="fields" class="field-evidence"></div>
+ <div id="tablezone"></div><div id="notice" class="note-box hidden"></div><div id="quiz" class="quiz-box hidden"></div>
+ <div class="inspector-foot">教学动态演示 · 非真实抓包。</div></aside>
+ </div><div id="toast" class="toast hidden" role="status" aria-live="polite"></div><script type="module" src="./src/app.js"></script></body></html>
