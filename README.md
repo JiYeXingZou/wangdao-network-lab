@@ -13,7 +13,7 @@
 
 ## 使用
 
-在线域名：`408.sagiri.top`（DNS 已配置，HTTPS 证书签发期间可能暂时无法访问）。
+在线体验：[408.sagiri.top](https://408.sagiri.top/)，已启用 HTTPS。
 
 离线使用：下载仓库中的 `preview.html`，直接用浏览器打开。
 
